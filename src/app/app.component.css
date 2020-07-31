@@ -1,0 +1,40 @@
+svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+}
+
+.score {
+  position: relative;
+  margin: 0;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.center {
+  text-align: center !important;
+}
+
+.middle {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+
+.weapon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.weapon:hover {
+  color: #007bff!important;
+}
