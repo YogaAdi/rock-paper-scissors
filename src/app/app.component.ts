@@ -171,21 +171,20 @@ export class AppComponent implements OnInit {
 	    counter--;
 	    if (counter == 0 ) {
 		  clearInterval(interval);
-		  if(this.playerOneSelected === false) {
+		  if(this.playerOneSelected === false && this.isResultMatch === false) {
 			this.playerOneSelected = true;
 			const randomNum =  Math.floor(Math.random() * 3 ) ;
 			this.playerOneWeapon = randomNum;
 			this.isResultMatch = false;
+			this.checkResult();
 		  }
-
-		  if(this.playerTwoSelected === false) {
+		  if(this.playerTwoSelected === false && this.isResultMatch === false) {
 			this.playerTwoSelected = true;
 			const randomNum =  Math.floor(Math.random() * 3 ) ;
 			this.playerTwoWeapon = randomNum;
 			this.isResultMatch = false;
+			this.checkResult();
 		  }
-		  this.checkResult();
-
 		}
 		this.playerPickWeaponTimer = counter;
 	  }, 1000);
