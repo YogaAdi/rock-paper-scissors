@@ -142,16 +142,18 @@ export class AppComponent implements OnInit {
 				this.scores[0] = this.scores[0]+1;
 				this.matchRound++;
 
-				if ((this.scores[0] - this.scores[1]) == 3) {
-					this.theWinner = 0;
-					this.matchEnd = true;
-				}
-
-				if (this.matchRound === 5) {
+				if (this.matchRound > 5) {
 					if (this.scores[0] > this.scores[1]) {
 						this.theWinner = 0;
 						this.matchEnd = true;
 					}
+				} else if (this.scores[0] == 3) {
+					this.theWinner = 0;
+					this.matchEnd = true;
+				}
+				else if ((this.scores[0] - this.scores[1]) == 3) {
+					this.theWinner = 0;
+					this.matchEnd = true;
 				}
 			}
 			else{
@@ -160,16 +162,18 @@ export class AppComponent implements OnInit {
 				this.scores[1] = this.scores[1]+1;
 				this.matchRound++;
 
-				if ((this.scores[1] - this.scores[0]) == 3) {
-					this.theWinner = 1;
-					this.matchEnd = true;
-				}
-
-				if (this.matchRound === 5) {
+				if (this.matchRound > 5) {
 					if (this.scores[0] < this.scores[1]) {
 						this.theWinner = 1;
 						this.matchEnd = true;
 					}
+				} else if (this.scores[1] == 3) {
+					this.theWinner = 1;
+					this.matchEnd = true;
+				}
+				else if ((this.scores[1] - this.scores[0]) == 3) {
+					this.theWinner = 1;
+					this.matchEnd = true;
 				}
 			}
 
