@@ -29,8 +29,7 @@ export class AppComponent implements OnInit {
 	playerOneSelected:boolean = false;
 	playerTwoSelected:boolean = false;
 
-	playerOneTimer: number = -1;
-	playerTwoTimer: number = -1;
+	playerPickWeaponTimer: number;
 
 	isResultMatch:boolean = false;
 
@@ -120,8 +119,6 @@ export class AppComponent implements OnInit {
 		this.playerTwoWeapon = -1;
 		this.playerOneSelected = false;
 		this.playerTwoSelected = false;
-		this.playerOneTimer = -1;
-		this.playerTwoTimer = -1;
 		this.isResultMatch = false;
 		this.referee = 'Ready....';
 	}
@@ -192,7 +189,8 @@ export class AppComponent implements OnInit {
 	    if (counter == 0 ) {
 	      clearInterval(interval);
 	      this.referee = 'Start!!!';
-	      this.matchStart = true;
+		  this.matchStart = true;
+		  this.startCountdown(4);
 	    }
 	    this.referee = counter;
 	  }, 1000);
@@ -203,10 +201,23 @@ export class AppComponent implements OnInit {
 	  let counter = seconds;
 	  const interval = setInterval(() => {
 	    counter--;
-	    if (counter < 0 ) {
-	      clearInterval(interval);
-	    }
-	    this.playerOneTimer = counter;
+	    if (counter == 0 ) {
+		  clearInterval(interval);
+		  if(this.playerOneSelected === false) {
+			this.playerOneSelected = true;
+			const randomNum =  Math.floor(Math.random() * 3 ) ;
+			this.playerOneWeapon = randomNum;
+			this.isResultMatch = false;
+			this.checkResult();
+		  } else if(this.playerTwoSelected === false) {
+			this.playerTwoSelected = true;
+			const randomNum =  Math.floor(Math.random() * 3 ) ;
+			this.playerTwoWeapon = randomNum;
+			this.isResultMatch = false;
+			this.checkResult();
+		  }
+		}
+		this.playerPickWeaponTimer = counter;
 	  }, 1000);
 	}
 

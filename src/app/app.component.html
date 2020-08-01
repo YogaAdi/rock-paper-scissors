@@ -53,14 +53,17 @@
             </h5>
 
             <div class="row mt-5" *ngIf="!playerOneSelected && !matchEnd && matchStart && !isResultMatch">
-              <div class="col-sm">
+              <div class="col-sm-4">
                 <span (click)="playerOnePick(0)" class="weapon">Rock</span>              
               </div>
-              <div class="col-sm">
+              <div class="col-sm-4">
                 <span (click)="playerOnePick(1)" class="weapon">Paper</span>              
               </div>
-              <div class="col-sm">
+              <div class="col-sm-4">
                 <span (click)="playerOnePick(2)" class="weapon">Scissors</span>
+              </div>
+              <div class="col-sm-12 text-center mt-3">
+                Please choose your weapon in {{playerPickWeaponTimer}}. . .
               </div>
             </div>
           </div>
@@ -96,14 +99,17 @@
             </h5>
 
             <div class="row mt-5" *ngIf="!playerTwoSelected && !matchEnd  && matchStart && !isResultMatch">
-              <div class="col-sm">
+              <div class="col-sm-4">
                 <span (click)="playerTwoPick(0)" class="weapon">Rock</span>              
               </div>
-              <div class="col-sm">
+              <div class="col-sm-4">
                 <span (click)="playerTwoPick(1)" class="weapon">Paper</span>              
               </div>
-              <div class="col-sm">
+              <div class="col-sm-4">
                 <span (click)="playerTwoPick(2)" class="weapon">Scissors</span>
+              </div>
+              <div class="col-sm-12 text-center mt-3">
+                Please choose your weapon in {{playerPickWeaponTimer}}. . .
               </div>
             </div>
 
