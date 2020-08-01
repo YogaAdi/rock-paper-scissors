@@ -4,15 +4,21 @@
   </a>
 </nav>
 
-<div class="container mt-5">
+<div class="container text-center mt-5" *ngIf="!isPlay">
+  <button class="btn btn-primary" (click)="start()">Start Game</button>
+</div>
+
+<div class="container mt-5" *ngIf="isPlay">
   <div class="row">
     <div class="col-sm">
-      <h5 class="text-center">Round - {{matchRound}}</h5>
+      <h5 class="text-center" *ngIf="!matchEnd">Round - {{matchRound}}</h5>
+      <h5 class="text-center" *ngIf="!matchStart">{{referee}}</h5>
+      <h5 class="text-center" *ngIf="matchStart && !isResultMatch">Start!!!</h5>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm">
+    <div class="col-sm text-center">
       <div *ngIf="isResultMatch && theWinner == -1">
         <div [ngSwitch]="theResult">
           <ng-template [ngSwitchCase]= "0"> <h3 class="text-center"> Player One Win! </h3></ng-template>
@@ -20,6 +26,7 @@
           <ng-template [ngSwitchCase]= "2"> <h3 class="text-center">It's a tie! </h3> </ng-template>
           <ng-template ngSwitchDefault> </ng-template>
         </div> 
+        <button class="btn btn-primary mt-3" (click)="nextRound()">Next Round</button>
       </div>
       <div class="text-center" *ngIf="matchEnd">
           <div [ngSwitch]="theWinner">
@@ -28,7 +35,8 @@
             <ng-template ngSwitchDefault> </ng-template>
           </div>
 
-          <button class="btn btn-primary mt-2" (click)="reset()">Rematch</button>
+          <button class="btn btn-primary mt-2 mr-2" (click)="reset()">Rematch</button>
+          <button class="btn btn-primary mt-2" (click)="exit()">Exit Game</button>
         </div>
         <!-- <p> Pick again to continue or </p>
           <button  (click)="reset()" mat-raised-button  color="primary"> Reset score</button> -->
@@ -44,7 +52,7 @@
               <span class="float-right bg-primary text-light score">{{scores[0]}}</span>
             </h5>
 
-            <div class="row mt-5" *ngIf="!playerOneSelected && !matchEnd">
+            <div class="row mt-5" *ngIf="!playerOneSelected && !matchEnd && matchStart && !isResultMatch">
               <div class="col-sm">
                 <span (click)="playerOnePick(0)" class="weapon">Rock</span>              
               </div>
@@ -59,9 +67,22 @@
 
           <div class="row mt-5" *ngIf="playerOneSelected">
             <div class="col-sm">
-              <p class="text-center">Waiting for opponent...</p>              
+              <p class="text-center">Waiting for opponent...</p>                          
             </div>
           </div>
+
+          <div class="row" *ngIf="isResultMatch">
+            <div class="col-sm">
+              <div [ngSwitch]="playerOneWeapon">
+                <ng-template [ngSwitchCase]= "0"> <h5 class="text-center mb-3"> Rock </h5></ng-template>
+                <ng-template [ngSwitchCase]= "1"> <h5 class="text-center mb-3"> Paper </h5> </ng-template>
+                <ng-template [ngSwitchCase]= "2"> <h5 class="text-center mb-3"> Scissors </h5> </ng-template>
+                <ng-template ngSwitchDefault> </ng-template>
+              </div>                     
+              <br>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -74,7 +95,7 @@
               <span class="float-left bg-primary text-light score">{{scores[1]}}</span>
             </h5>
 
-            <div class="row mt-5" *ngIf="!playerTwoSelected && !matchEnd">
+            <div class="row mt-5" *ngIf="!playerTwoSelected && !matchEnd  && matchStart && !isResultMatch">
               <div class="col-sm">
                 <span (click)="playerTwoPick(0)" class="weapon">Rock</span>              
               </div>
@@ -92,40 +113,21 @@
               </div>
             </div>
 
+            <div class="row" *ngIf="isResultMatch">
+              <div class="col-sm mt-3">
+                <br>
+                <div [ngSwitch]="playerTwoWeapon">
+                  <ng-template [ngSwitchCase]= "0"> <h5 class="text-center mb-3"> Rock </h5></ng-template>
+                  <ng-template [ngSwitchCase]= "1"> <h5 class="text-center mb-3"> Paper </h5> </ng-template>
+                  <ng-template [ngSwitchCase]= "2"> <h5 class="text-center mb-3"> Scissors </h5> </ng-template>
+                  <ng-template ngSwitchDefault> </ng-template>
+                </div>                     
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-
-    <!-- <div class="col-sm">
-      <div class="card" style="min-height: auto">
-        <div class="card-body">
-          <h5 class="card-title">
-            Player 1
-            <span class="float-right bg-primary text-light score">{{scores[1]}}</span>
-          </h5>
-
-          <br><br>
-          <div *ngIf="enemySelected !== -1" class="flex-container flex-center" >
-         <i *ngIf="enemySelected === 0">Rock</i>
-         <i *ngIf="enemySelected === 1">Paper</i>
-          <i *ngIf="enemySelected === 2">Scissors</i>           
-         </div>
-
-          <div class="row mt-5">
-            <div class="col-sm">
-              <span (click)="pick(0)" class="weapon">Rock</span>              
-            </div>
-            <div class="col-sm">
-              <span (click)="pick(1)" class="weapon">Paper</span>              
-            </div>
-            <div class="col-sm">
-              <span (click)="pick(2)" class="weapon">Scissors</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
   </div>
 
 
