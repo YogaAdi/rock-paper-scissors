@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 	playerOneSelected:boolean = false;
 	playerTwoSelected:boolean = false;
 
-	playerPickWeaponTimer: number;
+	playerPickWeaponTimer: string = '';
 
 	isResultMatch:boolean = false;
 
@@ -56,15 +56,6 @@ export class AppComponent implements OnInit {
 		this.playerOneWeapon = weapon;
 		this.isResultMatch = false;
 		this.checkResult();
-
-		/*if (this.playerTwoWeapon != -1 && this.playerOneSelected == true) {
-
-			setTimeout( () => {
-				const randomNum =  Math.floor(Math.random() * 3 ) ;
-				this.playerOneWeapon = randomNum;
-				this.checkResult();
-			},  Math.floor(Math.random()  * 500 ) +200);
-		}	*/
 	}
 
 	playerTwoPick(weapon: number): void {
@@ -72,29 +63,6 @@ export class AppComponent implements OnInit {
 		this.playerTwoWeapon = weapon;
 		this.isResultMatch = false;
 		this.checkResult();
-
-
-		/*var timer = this.playerOneTimer;
-
-		var i = 0;
-		(function repeat(times){
-		  if (++i > 5) return;
-		  setTimeout(() => {
-		    timer = i;
-		    console.log("playerOneTimer", timer);
-		    repeat();
-		  }, 1000);
-		})();*/
-
-
-		/*if (this.playerOneWeapon != -1 && this.playerTwoSelected == true) {
-
-			setTimeout( () => {
-				const randomNum =  Math.floor(Math.random() * 3 ) ;
-				this.playerTwoWeapon = randomNum;
-				this.checkResult();
-			},  Math.floor(Math.random()  * 500 ) +200);
-		}	*/
 	}
 
 	reset(): void {
@@ -209,7 +177,7 @@ export class AppComponent implements OnInit {
 			this.playerOneWeapon = randomNum;
 			this.isResultMatch = false;
 		  }
-		   
+
 		  if(this.playerTwoSelected === false) {
 			this.playerTwoSelected = true;
 			const randomNum =  Math.floor(Math.random() * 3 ) ;
