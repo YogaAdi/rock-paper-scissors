@@ -208,14 +208,16 @@ export class AppComponent implements OnInit {
 			const randomNum =  Math.floor(Math.random() * 3 ) ;
 			this.playerOneWeapon = randomNum;
 			this.isResultMatch = false;
-			this.checkResult();
-		  } else if(this.playerTwoSelected === false) {
+		  }
+		   
+		  if(this.playerTwoSelected === false) {
 			this.playerTwoSelected = true;
 			const randomNum =  Math.floor(Math.random() * 3 ) ;
 			this.playerTwoWeapon = randomNum;
 			this.isResultMatch = false;
-			this.checkResult();
 		  }
+		  this.checkResult();
+
 		}
 		this.playerPickWeaponTimer = counter;
 	  }, 1000);
